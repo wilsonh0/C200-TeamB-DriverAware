@@ -1,0 +1,83 @@
+{
+    "modulesContent": {
+        "$edgeAgent": {
+            "properties.desired": {
+                "modules": {
+                    "NVIDIADeepStreamSDK": {
+                        "settings": {
+                            "image": "marketplace.azurecr.io/nvidia/deepstream-iot2-l4t",
+                            "createOptions": "{\"Entrypoint\":[\"/usr/bin/deepstream-test5-app\",\"-c\",\"DSConfig.txt\"],\"HostConfig\":{\"runtime\":\"nvidia\",\"PortBindings\":{\"8554/tcp\":[{\"HostPort\":\"8554\"}]},\"Binds\":[\"/data/misc/storage:/data/misc/storage\"]},\"WorkingDir\":\"/data/misc/storage\",\"ExposedPorts\":{\"8554/tcp\":{}}}"
+                        },
+                        "type": "docker",
+                        "version": "1.0",
+                        "status": "running",
+                        "restartPolicy": "always"
+                    },
+                    "DeepStreamAnalytics": {
+                        "settings": {
+                            "image": "mcr.microsoft.com/azure-stream-analytics/azureiotedge:1.0.8",
+                            "createOptions": ""
+                        },
+                        "type": "docker",
+                        "version": "1.0.0.0",
+                        "env": {
+                            "PlanId": {
+                                "value": "stream-analytics-on-iot-edge"
+                            }
+                        },
+                        "status": "running",
+                        "restartPolicy": "always"
+                    }
+                },
+                "runtime": {
+                    "settings": {
+                        "minDockerVersion": "v1.25"
+                    },
+                    "type": "docker"
+                },
+                "schemaVersion": "1.1",
+                "systemModules": {
+                    "edgeAgent": {
+                        "settings": {
+                            "image": "mcr.microsoft.com/azureiotedge-agent:1.0",
+                            "createOptions": ""
+                        },
+                        "type": "docker"
+                    },
+                    "edgeHub": {
+                        "settings": {
+                            "image": "mcr.microsoft.com/azureiotedge-hub:1.0",
+                            "createOptions": "{\"HostConfig\":{\"PortBindings\":{\"443/tcp\":[{\"HostPort\":\"443\"}],\"5671/tcp\":[{\"HostPort\":\"5671\"}],\"8883/tcp\":[{\"HostPort\":\"8883\"}]}}}"
+                        },
+                        "type": "docker",
+                        "status": "running",
+                        "restartPolicy": "always"
+                    }
+                }
+            }
+        },
+        "$edgeHub": {
+            "properties.desired": {
+                "routes": {
+                    "DeepstreamToAnalytics": "FROM /messages/modules/NVIDIADeepStreamSDK/outputs/* INTO  BrokeredEndpoint(\"/modules/DeepStreamAnalytics/inputs/DeepStreamInput\")",
+                    "AnalyticsToIoTHub": "FROM /messages/modules/DeepStreamAnalytics/outputs/DrowsyDetections INTO $upstream"
+                },
+                "schemaVersion": "1.1",
+                "storeAndForwardConfiguration": {
+                    "timeToLiveSecs": 7200
+                }
+            }
+        },
+        "NVIDIADeepStreamSDK": {
+            "properties.desired": {}
+        },
+        "DeepStreamAnalytics": {
+            "properties.desired": {
+                "ASAJobInfo": "https://edgejobstore.blob.core.windows.net/deepstreamanalytics/ASAEdgeJobs/c96a775c-7109-463b-8a61-5b0c1f305f32/68517b46-e84d-4de0-a7ee-5c11ee84fdfb/ASAEdgeJobDefinition.zip?sv=2018-03-28&sr=b&sig=Z92fE6uBYF9OPSpPpXHIZLdpAzlTFssTikoWEwZowKw%3D&st=2021-01-30T06%3A42%3A12Z&se=2024-01-30T06%3A52%3A12Z&sp=r",
+                "ASAJobResourceId": "/subscriptions/b5235250-8e2a-43de-8f4d-d71bb233ff2e/resourceGroups/C200-2020-TeamB-RG/providers/Microsoft.StreamAnalytics/streamingjobs/DeepStreamAnalytics",
+                "ASAJobEtag": "82545a69-e77d-45c8-a92d-9d2001ced397",
+                "PublishTimestamp": "1/30/2021 6:52:13 AM"
+            }
+        }
+    }
+}

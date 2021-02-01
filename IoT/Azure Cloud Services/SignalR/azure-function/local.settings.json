@@ -1,0 +1,14 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "DefaultEndpointsProtocol=https;AccountName=c200teambstorage;AccountKey=NYUulT7KRa7Exs11/F6NnzqGi5nfTACtN5GmOWL8sL0m3vmBbOwUPOPJf9zqwc/q0piw6jwoRQ2cMgEAgQBtfA==;EndpointSuffix=core.windows.net",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+    "IoTEndpoint": "Endpoint=sb://ihsuprodsgres028dednamespace.servicebus.windows.net/;SharedAccessKeyName=iothubowner;SharedAccessKey=KsFL4YrfAhgr5RWfT41BvY0L7VtIPX8SeCmxuFoMaTA=;EntityPath=iothub-ehub-jetsonnano-6589782-e4ecc84841",
+    "AzureSignalRConnectionString": "Endpoint=https://c200-teamb-signalr.service.signalr.net;AccessKey=bDRgRDhZg2HAyjesE0YJZvQMQoP1Mbg9Bb85lK7XP+0=;Version=1.0;"
+  },
+  "Host": {
+    "LocalHttpPort": 7071,
+    "CORS": "http://127.0.0.1:5500",
+    "CORSCredentials": true
+  }
+}

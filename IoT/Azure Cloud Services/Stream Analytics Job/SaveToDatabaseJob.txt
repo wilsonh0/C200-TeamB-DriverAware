@@ -1,0 +1,11 @@
+SELECT
+    sensorId AS 'SensorId',
+    Normal,
+    "Eyes Closed" AS EyesClosed,
+    Yawn,
+    Drowsy,
+    CAST("@timestamp" AS datetime) AS 'Timestamp'
+INTO
+    [Database]
+FROM
+    [jetson-nano] AS nano
