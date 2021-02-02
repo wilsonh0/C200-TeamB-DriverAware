@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "QeSgFvQVmz1GhCKq3Hp/nFV3O6vV6EsoZaXd52cuUoGdyPZMKq/9mAbncVwIV9WwXfvjuA/7/FD3NW1eAmo8uw==",
+  "success": true,
+  "projectFilePath": "E:\\Program Files\\School\\Poly\\RP\\Year 2 Sem 2\\[C200] Specialization module\\Web Application\\Code\\C200\\WebApp_4\\WebApp_4.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Syed\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
+    "C:\\Users\\Syed\\.nuget\\packages\\restsharp\\106.11.7\\restsharp.106.11.7.nupkg.sha512"
+  ],
+  "logs": []
+}

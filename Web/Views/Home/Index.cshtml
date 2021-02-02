@@ -1,0 +1,49 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model List<Detections>
+
+@section Scripts {
+    <link href="~/lib/datatables/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#DeviceTbl').DataTable({
+                ordering: true,
+                paging: true,
+                searching: true
+            });
+        });
+    </script>
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+
+    <table id="DeviceTbl" class="table table-condensed table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Detection ID</th>
+                <th scope="col">Device ID</th>
+                <th scope="col">Sensor ID</th>
+                <th scope="col">Classification</th>
+                <th scope="col">Time Stamp</th>
+            </tr>
+        </thead>
+
+        @foreach (Detections a in Model)
+        {
+            <tr>
+                <td>@a.DetectionId</td>
+                <td>@a.DeviceId</td>
+                <td>@a.SensorId</td>
+                <td>@a.Classification</td>
+                <td>@String.Format("{0:yyyy-MM-dd HH:mm}", a.Timestamp)</td>
+            </tr>
+        }
+
+    </table>
+
+</div>
